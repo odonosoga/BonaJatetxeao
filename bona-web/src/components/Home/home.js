@@ -1,8 +1,8 @@
 import React from 'react';
 import Carousel from './carousel/carousel';
-import About from './about/about';
-import Testimonials from './testimonials/testimonials';
-import CTA from './cta/cta';
+import About from './about/about-eu';
+import Testimonials from './testimonials/testimonials-eu';
+import CTA_eu from './cta/cta-eu';
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
       <Carousel />
       <About />
       <Testimonials />
-      <CTA />
+      <CTA_eu />
     </>
   );
 };
