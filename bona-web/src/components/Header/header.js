@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Navbar, Container, Nav, Button, Modal, Form, Alert, Card, Row, Col } from "react-bootstrap";
+import {
+  Navbar,
+  Container,
+  Nav,
+  Button,
+  Modal,
+  Form,
+  Alert,
+  Card,
+  Row,
+  Col,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BsClock } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
@@ -7,15 +18,20 @@ import "../Header/header.css";
 import postre2 from "../../img/postre2.jpg";
 import BonaLogoa from "../../img/BonaLogoa.png";
 import { Trash3 } from "react-bootstrap-icons";
-
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
   const [login, setLogin] = useState(false);
   const [cart, setCart] = useState(false);
   const [email, setEmail] = useState("");
   const [pasahitza, setPassword] = useState("");
   const [error, setError] = useState("");
   const [expanded, setExpanded] = useState(false);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   const handleShowLogin = () => setLogin(true);
   const handleCloseLogin = () => {
@@ -31,7 +47,7 @@ const Header = () => {
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     if (!email || !pasahitza) {
-      setError("Mesedez, Emaila eta Pasahitza bete itzazu!!");
+      setError(t("login.error"));
       return;
     }
     handleCloseLogin();
@@ -39,26 +55,44 @@ const Header = () => {
 
   return (
     <>
-      {/* HEADER FIJO */}
       <section className="header-section text-white shadow-sm">
-        {/* TOPBAR */}
         <div className="topbar d-flex justify-content-between align-items-center px-4 py-2">
           <div className="topbar-left d-flex flex-column flex-sm-row align-items-center gap-3">
-             <img src={BonaLogoa} alt="Postre" height="90" style={{ marginLeft: "-25px"
-                        }} /> 
+            <img
+              src={BonaLogoa}
+              alt="BonaJatetxea Logo"
+              height="90"
+              style={{ marginLeft: "-25px" }}
+            />
           </div>
 
           <div className="topbar-right d-flex align-items-center gap-3">
             <div className="topbar-hours d-flex flex-column text-end me-2">
               <div className="d-flex align-items-center gap-2 justify-content-end">
                 <BsClock size={18} />
-                <small>12:00–16:00</small>
+                <small>{t("hours.lunch")}</small>
               </div>
               <div className="d-flex align-items-center gap-2 justify-content-end">
                 <BsClock size={18} />
-                <small>19:00–23:00</small>
+                <small>{t("hours.dinner")}</small>
               </div>
             </div>
+            <Button
+              variant="outline-light"
+              size="sm"
+              className="lang-btn"
+              onClick={() => changeLanguage("es")}
+            >
+              ES
+            </Button>
+            <Button
+              variant="outline-light"
+              size="sm"
+              className="lang-btn"
+              onClick={() => changeLanguage("eu")}
+            >
+              EU
+            </Button>
 
             <Button className="karrito-btn" size="sm" onClick={handleShowCart}>
               <FaShoppingCart size={20} />
@@ -69,12 +103,11 @@ const Header = () => {
               className="login-btn"
               onClick={handleShowLogin}
             >
-              Login
+              {t("login.button")}
             </Button>
           </div>
         </div>
 
-        {/* NAVBAR */}
         <Navbar
           expand="lg"
           className="border-top border-dark-subtle"
@@ -89,53 +122,23 @@ const Header = () => {
             />
             <Navbar.Collapse id="bona-navbar-nav">
               <Nav className="mx-auto text-center">
-                <Nav.Link
-                  as={Link}
-                  to="/BonaJatetxea"
-                  className="nav-link-custom px-3"
-                  onClick={() => setExpanded(false)}
-                >
-                  Hasiera
+                <Nav.Link as={Link} to="/BonaJatetxea" className="nav-link-custom px-3" onClick={() => setExpanded(false)}>
+                  {t("nav.home")}
                 </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to="/kontaktua"
-                  className="nav-link-custom px-3"
-                  onClick={() => setExpanded(false)}
-                >
-                  Kontaktua
+                <Nav.Link as={Link} to="/kontaktua" className="nav-link-custom px-3" onClick={() => setExpanded(false)}>
+                  {t("nav.contact")}
                 </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to="/erreserbak"
-                  className="nav-link-custom px-3"
-                  onClick={() => setExpanded(false)}
-                >
-                  Erreserbak
+                <Nav.Link as={Link} to="/erreserbak" className="nav-link-custom px-3" onClick={() => setExpanded(false)}>
+                  {t("nav.reservations")}
                 </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to="/menu"
-                  className="nav-link-custom px-3"
-                  onClick={() => setExpanded(false)}
-                >
-                  Plater motak
+                <Nav.Link as={Link} to="/menu" className="nav-link-custom px-3" onClick={() => setExpanded(false)}>
+                  {t("nav.menu")}
                 </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to="/ordutegia"
-                  className="nav-link-custom px-3"
-                  onClick={() => setExpanded(false)}
-                >
-                  Ordutegia
+                <Nav.Link as={Link} to="/ordutegia" className="nav-link-custom px-3" onClick={() => setExpanded(false)}>
+                  {t("nav.schedule")}
                 </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to="/pendiente"
-                  className="nav-link-custom px-3"
-                  onClick={() => setExpanded(false)}
-                >
-                  Bidalketak
+                <Nav.Link as={Link} to="/pendiente" className="nav-link-custom px-3" onClick={() => setExpanded(false)}>
+                  {t("nav.delivery")}
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
@@ -143,43 +146,41 @@ const Header = () => {
         </Navbar>
       </section>
 
-      {/* Espacio para que el contenido no quede tapado */}
       <div style={{ height: "0px" }}></div>
 
       {/* MODAL LOGIN */}
       <Modal show={login} onHide={handleCloseLogin} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Saioa Hasi</Modal.Title>
+          <Modal.Title>{t("login.modalTitle")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmitLogin}>
             <Form.Group className="mb-3" controlId="email">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>{t("login.email")}</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Email"
+                placeholder={t("login.emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="pasahitza">
-              <Form.Label>Pasahitza</Form.Label>
+              <Form.Label>{t("login.password")}</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Pasahitza"
+                placeholder={t("login.passwordPlaceholder")}
                 value={pasahitza}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
             <Form.Label className="d-flex justify-content-center">
-              Ez daukazu kontua?{" "}
-              <Link to="/erregistroa" className="text-primary" onClick={handleCloseLogin}>
-                Erregistratu hemen
+              {t("login.noAccount")} <Link to="/erregistroa" className="text-primary" onClick={handleCloseLogin}>
+                {t("login.registerHere")}
               </Link>
             </Form.Label>
-            <Button  type="submit" className="hasi-btn w-100 fw-bold">
-              Hasi
+            <Button type="submit" className="hasi-btn w-100 fw-bold">
+              {t("login.submit")}
             </Button>
           </Form>
         </Modal.Body>
@@ -188,7 +189,7 @@ const Header = () => {
       {/* MODAL CARRITO */}
       <Modal show={cart} onHide={handleCloseCart} centered size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Laburpena</Modal.Title>
+          <Modal.Title>{t("cart.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
@@ -205,28 +206,30 @@ const Header = () => {
                           height: "125px",
                           objectFit: "cover",
                           marginRight: "10px",
-                          borderRadius: "20px"
+                          borderRadius: "20px",
                         }}
                       />
                       <div className="d-flex flex-column justify-content-center">
-                        <label>Izena: Postre</label>
-                        <label>Cantidad: 1</label>
-                        <label>Precio: 5€</label>
+                        <label>{t("cart.itemName")}: Postre</label>
+                        <label>{t("cart.quantity")}: 1</label>
+                        <label>{t("cart.price")}: 5€</label>
                       </div>
                     </Col>
                     <Col md={4} className="d-flex justify-content-end">
-                      <div
-                        className="align-self-center trash-icon"
-                      >
+                      <div className="align-self-center trash-icon">
                         <Trash3 size={24} />
                       </div>
                     </Col>
                   </Row>
                 </Card>
 
-                <h4 className="text-center fw-bold mt-3">Totala: 5€</h4>
-                <div className=" d-flex justify-content-center mt-3">
-                  <Button className="konf-btn">Bidalketa Konfirmatu</Button>
+                <h4 className="text-center fw-bold mt-3">
+                  {t("cart.total")}: 5€
+                </h4>
+                <div className="d-flex justify-content-center mt-3">
+                  <Button className="konf-btn">
+                    {t("cart.confirmButton")}
+                  </Button>
                 </div>
               </Col>
             </Row>

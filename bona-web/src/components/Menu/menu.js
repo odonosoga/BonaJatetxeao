@@ -1,5 +1,13 @@
+// PÁGINA: Menu / Karta
+// Traducciones necesarias: menu.heroTitle,
+// menu.sectionStarters, menu.sectionMeat, menu.sectionFish, menu.sectionVegetables,
+// menu.sectionPastaRice, menu.sectionDesserts,
+// menu.labelName, menu.labelDescription, menu.labelIngredients, menu.labelPrice,
+// menu.buttonAdd
+
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import "./menu.css";
 import sopa from "../../img/lentejas.jpg";
 import pollo from "../../img/pollo.jpg";
@@ -15,24 +23,32 @@ import postre1 from "../../img/postre1.jpg";
 import postre2 from "../../img/postre2.jpg";
 import heroImg from "../../img/menu.jpeg";
 
-const HeroReserva = () => (
-  <section
-    className="hero-reserva"
-    style={{ backgroundImage: `url(${heroImg})` }}
-  >
-    <div className="hero-overlay">
-      <Container className="h-100">
-        <Row className="h-100 align-items-center justify-content-center">
-          <Col md={8} className="text-center text-white">
-            <h1 className="display-4 fw-bold mb-3">Karta</h1>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  </section>
-);
+const HeroReserva = () => {
+  const { t } = useTranslation();
+
+  return (
+    <section
+      className="hero-reserva"
+      style={{ backgroundImage: `url(${heroImg})` }}
+    >
+      <div className="hero-overlay">
+        <Container className="h-100">
+          <Row className="h-100 align-items-center justify-content-center">
+            <Col md={8} className="text-center text-white">
+              <h1 className="display-4 fw-bold mb-3">
+                {t("menu.heroTitle")}
+              </h1>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </section>
+  );
+};
 
 const Menu = () => {
+  const { t } = useTranslation();
+
   const [cantidadSopa, setCantidadSopa] = useState(1);
   const [cantidadCrema, setCantidadCrema] = useState(1);
   const [cantidadPollo, setCantidadPollo] = useState(1);
@@ -54,7 +70,7 @@ const Menu = () => {
         <Container fluid className="p-0 d-flex flex-column align-items-center">
           <div className="menu-card p-4 w-100">
             {/* Koilara Platerrak */}
-            <h3 className="mb-3 text-center">Zapore Platerrak</h3>
+            <h3 className="mb-3 text-center">{t("menu.sectionStarters")}</h3>
             <Row className="d-flex justify-content-center align-items-start mb-4 w-100">
               <Col className="janari-col d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
                 <img
@@ -64,21 +80,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Lekale-Sopea
+                    <strong>{t("menu.labelName")}:</strong> Lekale-Sopea
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Berotutako eta elikagarria
-                    lekale-sopea
+                    <strong>{t("menu.labelDescription")}:</strong> Berotutako eta elikagarria lekale-sopea
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Lekaleak, azenarioa, patata,
-                    tipula, baratxuria
+                    <strong>{t("menu.labelIngredients")}:</strong> Lekaleak, azenarioa, patata, tipula, baratxuria
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 5€
+                    <strong>{t("menu.labelPrice")}:</strong> 5€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -110,21 +126,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Baratxuri-Krema
+                    <strong>{t("menu.labelName")}:</strong> Baratxuri-Krema
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Baratxuri freskoekin
-                    egindako krema leuna
+                    <strong>{t("menu.labelDescription")}:</strong> Baratxuri freskoekin egindako krema leuna
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Azenarioa, kalabazin, patata,
-                    tipula
+                    <strong>{t("menu.labelIngredients")}:</strong> Azenarioa, kalabazin, patata, tipula
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 4€
+                    <strong>{t("menu.labelPrice")}:</strong> 4€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -150,7 +166,7 @@ const Menu = () => {
             </Row>
 
             {/* Haragia */}
-            <h3 className="mb-3 text-center">Haragia</h3>
+            <h3 className="mb-3 text-center">{t("menu.sectionMeat")}</h3>
             <Row className="d-flex justify-content-center align-items-start mb-4 w-100">
               <Col className="janari-col d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
                 <img
@@ -160,21 +176,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Oilar-Erribera Asada
+                    <strong>{t("menu.labelName")}:</strong> Oilar-Erribera Asada
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Oilar xurgatua eta goxoa
-                    labean egina
+                    <strong>{t("menu.labelDescription")}:</strong> Oilar xurgatua eta goxoa labean egina
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Oilar-erribera, olio berdea,
-                    gatza, piperra, baratxuria
+                    <strong>{t("menu.labelIngredients")}:</strong> Oilar-erribera, olio berdea, gatza, piperra, baratxuria
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 8€
+                    <strong>{t("menu.labelPrice")}:</strong> 8€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -206,21 +222,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Txahal-Solomiloa Patata Purearekin
+                    <strong>{t("menu.labelName")}:</strong> Txahal-Solomiloa Patata Purearekin
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Solomiloa labean egina,
-                    patata purearekin
+                    <strong>{t("menu.labelDescription")}:</strong> Solomiloa labean egina, patata purearekin
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Txahal-solomiloa, gatza,
-                    piperra, olio berdea, patata, gurina, esnea
+                    <strong>{t("menu.labelIngredients")}:</strong> Txahal-solomiloa, gatza, piperra, olio berdea, patata, gurina, esnea
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 10€
+                    <strong>{t("menu.labelPrice")}:</strong> 10€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -248,7 +264,7 @@ const Menu = () => {
             </Row>
 
             {/* Arraina */}
-            <h3 className="mb-3 text-center">Arrainak</h3>
+            <h3 className="mb-3 text-center">{t("menu.sectionFish")}</h3>
             <Row className="d-flex justify-content-center align-items-start mb-4 w-100">
               <Col className="janari-col d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
                 <img
@@ -258,20 +274,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Arrain Planoa
+                    <strong>{t("menu.labelName")}:</strong> Arrain Planoa
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Eguneko arrain freskoa
-                    planan egina
+                    <strong>{t("menu.labelDescription")}:</strong> Eguneko arrain freskoa planan egina
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Arraina, limoi, olioa, gatza
+                    <strong>{t("menu.labelIngredients")}:</strong> Arraina, limoi, olioa, gatza
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 12€
+                    <strong>{t("menu.labelPrice")}:</strong> 12€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -305,21 +322,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Labean egindako Izokina
+                    <strong>{t("menu.labelName")}:</strong> Labean egindako Izokina
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Izokina labean egina, belar
-                    freskoekin
+                    <strong>{t("menu.labelDescription")}:</strong> Izokina labean egina, belar freskoekin
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Izokina, limoi, baratxuria,
-                    olioa
+                    <strong>{t("menu.labelIngredients")}:</strong> Izokina, limoi, baratxuria, olioa
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 14€
+                    <strong>{t("menu.labelPrice")}:</strong> 14€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -347,7 +364,7 @@ const Menu = () => {
             </Row>
 
             {/* Barazkiak */}
-            <h3 className="mb-3 text-center">Barazkiak</h3>
+            <h3 className="mb-3 text-center">{t("menu.sectionVegetables")}</h3>
             <Row className="d-flex justify-content-center align-items-start mb-4 w-100">
               <Col className="janari-col d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
                 <img
@@ -357,21 +374,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Nahasketa-Entsalada
+                    <strong>{t("menu.labelName")}:</strong> Nahasketa-Entsalada
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Letxuga, tomate eta tipula
-                    freskoko nahasketa
+                    <strong>{t("menu.labelDescription")}:</strong> Letxuga, tomate eta tipula freskoko nahasketa
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Letxuga, tomatea, tipula, olibak,
-                    olioa
+                    <strong>{t("menu.labelIngredients")}:</strong> Letxuga, tomatea, tipula, olibak, olioa
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 5€
+                    <strong>{t("menu.labelPrice")}:</strong> 5€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -405,21 +422,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Pisto Etxekoa
+                    <strong>{t("menu.labelName")}:</strong> Pisto Etxekoa
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Baratxuri tradizionaleko
-                    estofatua
+                    <strong>{t("menu.labelDescription")}:</strong> Baratxuri tradizionaleko estofatua
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Tomatea, kalabazin, piperra,
-                    tipula, olioa
+                    <strong>{t("menu.labelIngredients")}:</strong> Tomatea, kalabazin, piperra, tipula, olioa
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 6€
+                    <strong>{t("menu.labelPrice")}:</strong> 6€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -445,7 +462,7 @@ const Menu = () => {
             </Row>
 
             {/* Pasta eta Arroza */}
-            <h3 className="mb-3 text-center">Pasta eta Arroza</h3>
+            <h3 className="mb-3 text-center">{t("menu.sectionPastaRice")}</h3>
             <Row className="d-flex justify-content-center align-items-start mb-4 w-100">
               <Col className="janari-col d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
                 <img
@@ -455,21 +472,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Espageti Boloñesa
+                    <strong>{t("menu.labelName")}:</strong> Espageti Boloñesa
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Etxeko boloñesa saltsa
-                    goxodun pasta
+                    <strong>{t("menu.labelDescription")}:</strong> Etxeko boloñesa saltsa goxodun pasta
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Espagetiak, haragia, tomate,
-                    tipula, baratxuria
+                    <strong>{t("menu.labelIngredients")}:</strong> Espagetiak, haragia, tomate, tipula, baratxuria
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 7€
+                    <strong>{t("menu.labelPrice")}:</strong> 7€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -503,22 +520,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Marisko-paella
+                    <strong>{t("menu.labelName")}:</strong> Marisko-paella
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Arroza, ganbak eta
-                    muskuiluak dituen paella tradizionala
+                    <strong>{t("menu.labelDescription")}:</strong> Arroza, ganbak eta muskuiluak dituen paella tradizionala
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Arroza, ganbak, muskuiluak,
-                    kalamarrua, piperrak, baratxuria, olio berdea, gatza,
-                    azafrán
+                    <strong>{t("menu.labelIngredients")}:</strong> Arroza, ganbak, muskuiluak, kalamarrua, piperrak, baratxuria, olio berdea, gatza, azafrán
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 6€
+                    <strong>{t("menu.labelPrice")}:</strong> 6€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -544,7 +560,7 @@ const Menu = () => {
             </Row>
 
             {/* Postreak */}
-            <h3 className="mb-3 text-center">Postreak</h3>
+            <h3 className="mb-3 text-center">{t("menu.sectionDesserts")}</h3>
             <Row className="d-flex justify-content-center align-items-start mb-4 w-100">
               <Col className="janari-col d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
                 <img
@@ -554,21 +570,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Amonaren Tarta
+                    <strong>{t("menu.labelName")}:</strong> Amonaren Tarta
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Galleta eta kremazko
-                    geruzekin egindako tarta goxoa
+                    <strong>{t("menu.labelDescription")}:</strong> Galleta eta kremazko geruzekin egindako tarta goxoa
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> María galletak, esnea, azukrea,
-                    arrautzak, gurina, bainilla esentzia
+                    <strong>{t("menu.labelIngredients")}:</strong> María galletak, esnea, azukrea, arrautzak, gurina, bainilla esentzia
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 3€
+                    <strong>{t("menu.labelPrice")}:</strong> 3€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"
@@ -602,21 +618,21 @@ const Menu = () => {
                 />
                 <div className="d-flex flex-column justify-content-center align-items-md-start align-items-center m-3">
                   <label>
-                    <strong>Izena:</strong> Torrija
+                    <strong>{t("menu.labelName")}:</strong> Torrija
                   </label>
                   <label>
-                    <strong>Deskribapena:</strong> Torrija kremazkoa, kókoa
-                    izozkiarekin
+                    <strong>{t("menu.labelDescription")}:</strong> Torrija kremazkoa, kókoa izozkiarekin
                   </label>
                   <label>
-                    <strong>Osagaiak:</strong> Ogi xerra, esnea, azukrea,
-                    kanela hautsean, arrautzak, oliba olioa, limoiko zurtoina
+                    <strong>{t("menu.labelIngredients")}:</strong> Ogi xerra, esnea, azukrea, kanela hautsean, arrautzak, oliba olioa, limoiko zurtoina
                   </label>
                   <label>
-                    <strong>Prezioa:</strong> 4€
+                    <strong>{t("menu.labelPrice")}:</strong> 4€
                   </label>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <button className="btn btn-success btn-sm">Gehitu</button>
+                    <button className="btn btn-success btn-sm">
+                      {t("menu.buttonAdd")}
+                    </button>
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-light btn-sm"

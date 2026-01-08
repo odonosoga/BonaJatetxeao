@@ -23,3 +23,8 @@ Dentro de "scripts" de tu package.json, agrega:​​
 "deploy": "gh-pages -d build"
 
 npm run deploy
+
+
+HIZKUNTZAK:
+
+npm install i18next react-i18next i18next-browser-languagedetector i18next-http-backend --legacy-peer-deps

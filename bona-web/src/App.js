@@ -1,5 +1,7 @@
-// App.js
 import { Routes, Route } from 'react-router-dom';
+import React, { Suspense } from 'react';  // CAMBIO: Suspense de react
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';  // Crea src/i18n.js si no existe
 import Header from './components/Header/header';
 import Footer from './components/Footer/footer';
 import Home from './components/Home/home';
@@ -12,21 +14,25 @@ import Pd from './components/PendingDelivery/pendingdelivery';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/BonaJatetxea" element={<Home />}/>
-          <Route path="/kontaktua" element={<Contact />} />
-          <Route path="/erreserbak" element={<Reserva />} />
-          <Route path="/erregistroa" element={<Register />} />
-          <Route path="/menu" element={<Menu />}/>
-          <Route path="/pendiente" element={<Pd />}/>
-          <Route path="/ordutegia" element={<Schedule />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <I18nextProvider i18n={i18n}>
+      <div className="App">
+        <Header />
+        <main>
+          <Suspense fallback={<div>Cargando...</div>}>  {/* OK ahora */}
+            <Routes>
+              <Route path="/BonaJatetxea" element={<Home />} />
+              <Route path="/kontaktua" element={<Contact />} />
+              <Route path="/erreserbak" element={<Reserva />} />
+              <Route path="/erregistroa" element={<Register />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/pendiente" element={<Pd />} />
+              <Route path="/ordutegia" element={<Schedule />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
+    </I18nextProvider>
   );
 }
 export default App;

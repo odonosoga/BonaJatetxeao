@@ -1,6 +1,10 @@
+// PÁGINA: PendingDelivery (Pedidos pendientes / Zain dauden eskaerak)
+// Traducciones necesarias: pending.title, pending.badgeAvailable, pending.lastUpdated
+
 import React from 'react';
 import DeliveryCard from './deliverycard';
 import { Container, Row, Col, Badge } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import './pendingdelivery.css';
 
 const deliveriesMock = [
@@ -12,16 +16,24 @@ const deliveriesMock = [
 ];
 
 const PendingDelivery = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="pendingdelivery-section min-vh-100">
       <Container>
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div>
-            <h2 className="fw-bold mb-1 pt-5">Zain dauden eskaerak</h2>
-            <Badge bg="danger" className="fs-6">5 eskuragarri</Badge>
+            <h2 className="fw-bold mb-1 pt-5">
+              {t("pending.title")}
+            </h2>
+            <Badge bg="danger" className="fs-6">
+              {t("pending.badgeAvailable", { count: 5 })}
+            </Badge>
           </div>
           <div className="text-end">
-            <small className="text-muted">Duela 2 min eguneratua</small>
+            <small className="text-muted">
+              {t("pending.lastUpdated")}
+            </small>
           </div>
         </div>
         

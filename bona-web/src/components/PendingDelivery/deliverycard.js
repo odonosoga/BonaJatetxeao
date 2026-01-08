@@ -1,9 +1,15 @@
+// COMPONENTE: DeliveryCard (Tarjeta de pedido a domicilio)
+// Traducciones necesarias: delivery.pendingBadge, delivery.itemsLabel, delivery.acceptButton
+
 import React from 'react';
 import { Card, Button, Badge, Stack } from 'react-bootstrap';
 import { BsBoxSeam, BsClockFill, BsGeoAltFill } from 'react-icons/bs';
+import { useTranslation } from 'react-i18next';
 import './deliverycard.css';
 
 const DeliveryCard = ({ delivery }) => {
+  const { t } = useTranslation();
+
   return (
     <Card className="delivery-card shadow-sm border-0">
       <Card.Header className="card-header bg-opacity-10 pb-3">
@@ -13,7 +19,7 @@ const DeliveryCard = ({ delivery }) => {
           </div>
           <div>
             <div className="fw-bold small text-white"># {delivery.id}</div>
-            <Badge bg="warning">ZAIN</Badge>
+            <Badge bg="warning">{t("delivery.pendingBadge")}</Badge>
           </div>
         </Stack>
       </Card.Header>
@@ -34,12 +40,14 @@ const DeliveryCard = ({ delivery }) => {
         
         <div className="d-flex justify-content-between align-items-end mt-auto">
           <div>
-            <small className="text-muted">Produktu kopurua: {delivery.items}</small>
+            <small className="text-muted">
+              {t("delivery.itemsLabel")}: {delivery.items}
+            </small>
           </div>
           <div className="text-end">
             <div className="h5 fw-bold text-success mb-1">€{delivery.total}</div>
             <Button size="sm" className="delivery-btn fw-bold px-3 py-2">
-              Eskaera onartu
+              {t("delivery.acceptButton")}
             </Button>
           </div>
         </div>
